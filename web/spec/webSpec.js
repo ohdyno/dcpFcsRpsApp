@@ -1,6 +1,7 @@
 const ReactDOM = require('react-dom');
 const React = require('react');
 const RPSApp = require('../src/web');
+const ReactTestUtils = require('react-dom/test-utils')
 
 describe("play form", function () {
     beforeEach(setUpDom);
@@ -88,6 +89,17 @@ describe("play form", function () {
 
     });
 
+    describe("when the user clicks the play button", function () {
+        it("passes the user inputs to RPS", function () {
+            const rpsSpy = {
+                play: jasmine.createSpy('rpsSpy')
+            };
+            renderApp(rpsSpy);
+            play('foo', 'bar');
+            expect(rpsSpy.play).toHaveBeenCalledWith('foo', 'bar', jasmine.anything())
+        });
+    });
+
     afterEach(teardownDom);
 });
 
@@ -107,10 +119,18 @@ function renderApp(rps) {
     ReactDOM.render(
         <RPSApp rps={rps}/>,
         domFixture
-    );
+    )
 }
 
-function play() {
+function fillForm(selector, playerThrow) {
+    const input = document.querySelector(selector);
+    input.value = playerThrow;
+    ReactTestUtils.Simulate.change(input)
+}
+
+function play(p1, p2) {
+    fillForm('#p1Throw', p1);
+    fillForm('#p2Throw', p2);
     document.querySelector('#playButton').click();
 }
 

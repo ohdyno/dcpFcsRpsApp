@@ -4,11 +4,14 @@ class RPSApp extends React.Component {
     constructor(usecase) {
         super(usecase);
         this.rps = usecase.rps;
-        this.state = {}
+        this.state = {
+            p1Throw: '',
+            p2Throw: ''
+        }
     }
 
     playButtonClicked() {
-        this.rps.play(null, null, this)
+        this.rps.play(this.state.p1Throw, this.state.p2Throw, this)
     }
 
     player1Wins() {
@@ -35,8 +38,18 @@ class RPSApp extends React.Component {
         })
     }
 
+    updateThrow(event) {
+        this.setState({
+            [event.target.id] : event.target.value
+        })
+    }
+
     render() {
-        return <button id='playButton' onClick={this.playButtonClicked.bind(this)}>{this.state.result}</button>
+        return <div>
+            <input id='p1Throw' onChange={this.updateThrow.bind(this)}/>
+            <input id='p2Throw' onChange={this.updateThrow.bind(this)}/>
+            <button id='playButton' onClick={this.playButtonClicked.bind(this)}>{this.state.result}</button>
+        </div>
     }
 }
 
