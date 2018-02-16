@@ -4,9 +4,7 @@ class RPSApp extends React.Component {
     constructor(usecase) {
         super(usecase);
         this.rps = usecase.rps;
-        this.state = {
-            result: 'invalid'
-        }
+        this.state = {}
     }
 
     playButtonClicked() {
@@ -19,8 +17,22 @@ class RPSApp extends React.Component {
         })
     }
 
-    invalid() {
+    player2Wins() {
+        this.setState({
+            result: 'player 2 wins'
+        })
+    }
 
+    tie() {
+        this.setState({
+            result: 'tie'
+        })
+    }
+
+    invalid() {
+        this.setState({
+            result: 'invalid'
+        })
     }
 
     render() {

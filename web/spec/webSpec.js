@@ -7,6 +7,20 @@ describe("play form", function () {
 
     let rpsStub;
 
+    describe("when no rounds have been played", function () {
+        beforeEach(function() {
+            renderApp()
+        });
+
+        it("does not show any result", function () {
+            expect(pageContent()).not.toContain('invalid');
+            expect(pageContent()).not.toContain('player 1 wins');
+            expect(pageContent()).not.toContain('player 2 wins');
+            expect(pageContent()).not.toContain('tie')
+        });
+
+    });
+
     describe("when RPS.play tells the UI that the input is invalid", function () {
         beforeEach(function () {
             rpsStub = {
@@ -36,6 +50,40 @@ describe("play form", function () {
         it('tells the user that player 1 wins', function () {
             play();
             expect(pageContent()).toContain('player 1 wins')
+        });
+
+    });
+
+    describe("when RPS.play tells the UI that player 2 wins", function () {
+        beforeEach(function () {
+            rpsStub = {
+                play: function (p1, p2, ui) {
+                    ui.player2Wins()
+                }
+            };
+            renderApp(rpsStub);
+        });
+
+        it('tells the user that player 2 wins', function () {
+            play();
+            expect(pageContent()).toContain('player 2 wins')
+        });
+
+    });
+
+    describe("when RPS.play tells the UI that players tied", function () {
+        beforeEach(function () {
+            rpsStub = {
+                play: function (p1, p2, ui) {
+                    ui.tie()
+                }
+            };
+            renderApp(rpsStub);
+        });
+
+        it('tells the user that players tied', function () {
+            play();
+            expect(pageContent()).toContain('tie')
         });
 
     });
