@@ -49,6 +49,8 @@ class RPSApp extends React.Component {
             <input id='p1Throw' onChange={this.updateThrow.bind(this)}/>
             <input id='p2Throw' onChange={this.updateThrow.bind(this)}/>
             <button id='playButton' onClick={this.playButtonClicked.bind(this)}>{this.state.result}</button>
+
+            <div>no rounds have been played</div>
         </div>
     }
 }

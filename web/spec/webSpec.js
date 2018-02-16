@@ -110,6 +110,28 @@ describe("play form", function () {
     afterEach(teardownDom);
 });
 
+describe("history", function () {
+    beforeEach(setUpDom);
+
+    describe("when no rounds have been played", function () {
+        beforeEach(function () {
+            let rpsStub = {
+                getHistory: function(ui) {
+                    ui.noRounds()
+                }
+            };
+
+            renderApp(rpsStub)
+        });
+
+        it("shows that no rounds have been played", function () {
+            expect(pageContent()).toContain("no rounds have been played")
+        });
+    });
+
+    afterEach(teardownDom);
+});
+
 let domFixture;
 
 function setUpDom() {
