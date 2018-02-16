@@ -26,7 +26,7 @@ class RPS {
             ui.player1Wins();
             result = 'player 1 wins';
         } else {
-            ui.player2Wins()
+            ui.player2Wins();
             result = 'player 2 wins'
         }
 

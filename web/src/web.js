@@ -34,7 +34,6 @@ class PlayForm extends React.Component {
         })
     }
 
-
     updateThrow(event) {
         this.setState({
             [event.target.id]: event.target.value
@@ -55,8 +54,30 @@ class PlayForm extends React.Component {
 }
 
 class History extends React.Component {
+    constructor(usecase) {
+        super();
+        this.rps = usecase.rps;
+        this.state = {}
+    }
+
+    componentDidMount() {
+        this.rps.getHistory(this)
+    }
+
+    noRounds() {
+        this.setState({
+            displayRounds: <li>'no rounds have been played'</li>
+        })
+    }
+
+    roundsPlayed(rounds) {
+        this.setState({
+            displayRounds: rounds.map(round => <li>`${round.p1Throw} ${round.p2Throw} ${round.result}</li>)
+        })
+    }
+
     render() {
-        return <div>no rounds have been played</div>
+        return <ul>{this.state.displayRounds}</ul>
     }
 }
 
@@ -69,7 +90,7 @@ class RPSApp extends React.Component {
     render() {
         return <div>
             <PlayForm rps={this.rps}/>
-            <History />
+            <History rps={this.rps}/>
         </div>
     }
 }

@@ -2,6 +2,7 @@ const ReactDOM = require('react-dom');
 const React = require('react');
 const RPSApp = require('../src/web');
 const ReactTestUtils = require('react-dom/test-utils');
+const {Round} = require('rps');
 
 describe("play form", function () {
     beforeEach(setUpDom);
@@ -129,6 +130,32 @@ describe("history", function () {
         });
     });
 
+    describe("when rounds have been played", function () {
+        const round1 = new Round('foo', 'bar', 'baz');
+        const round2 = new Round('a', 'b', 'c');
+        beforeEach(function () {
+            let rpsStub = {
+                getHistory: function(ui) {
+                    ui.roundsPlayed([
+                        round1,
+                        round2
+                    ])
+                }
+            };
+
+            renderApp(rpsStub)
+        });
+
+        it("shows the throws and results of the rounds played", function () {
+            expect(pageContent()).toContain(round1.p1Throw);
+            expect(pageContent()).toContain(round1.p2Throw);
+            expect(pageContent()).toContain(round1.result);
+            expect(pageContent()).toContain(round2.p1Throw);
+            expect(pageContent()).toContain(round2.p2Throw);
+            expect(pageContent()).toContain(round2.result)
+        });
+    });
+
     afterEach(teardownDom);
 });
 
@@ -144,7 +171,8 @@ function teardownDom() {
     domFixture.remove()
 }
 
-function renderApp(rps) {
+function renderApp(rps = {}) {
+    rps.getHistory = rps.getHistory || function() {};
     ReactDOM.render(
         <RPSApp rps={rps}/>,
         domFixture
