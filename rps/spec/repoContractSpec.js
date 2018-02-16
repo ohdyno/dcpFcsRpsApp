@@ -1,11 +1,11 @@
 const {Round} = require('../src/rps');
 
-function runContractAgainst(Repo) {
+function runContractAgainst(ConstructRepo) {
     describe("repository contract", function () {
         let repo;
 
         beforeEach(function () {
-            repo = new Repo();
+            repo = ConstructRepo();
         });
 
         describe("when the repository with no rounds and calling isEmpty", function () {
