@@ -8,8 +8,8 @@ class Round {
 }
 
 class RPS {
-    constructor() {
-        this.rounds = []
+    constructor(repo) {
+        this.repo = repo
     }
 
     playRound(p1Throw, p2Throw, ui) {
@@ -30,11 +30,12 @@ class RPS {
             result = 'player 2 wins'
         }
 
-        this.rounds.push(new Round(p1Throw, p2Throw, result))
+        const round = new Round(p1Throw, p2Throw, result);
+        this.repo.save(round);
     }
 
     getHistory(ui) {
-        if (this.rounds.length === 0) {
+        if (this.repo.isEmpty()) {
             ui.noRounds();
         } else {
             ui.roundsPlayed(this.rounds)

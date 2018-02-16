@@ -1,7 +1,14 @@
 const { RPS, Round } = require('../src/rps');
+const FakeRepo = require('./fakeRepo');
 
 describe("history", function () {
-    const rps = new RPS();
+    let rps;
+    let repo = new FakeRepo();
+
+    beforeEach(function() {
+      rps = new RPS(repo);
+    });
+
     describe("for when no rounds have been played", function () {
         let uiSpy;
         beforeEach(function () {

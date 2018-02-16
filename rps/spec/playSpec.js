@@ -1,7 +1,9 @@
 const { RPS } = require('../src/rps');
+const FakeRepo = require('./fakeRepo')
 
 describe("RPS", function () {
-    const rps = new RPS();
+    let repo = new FakeRepo();
+    const rps = new RPS(repo);
     describe("play a single round", function () {
         describe("for valid inputs", function () {
             describe("and player 1 wins", function () {
