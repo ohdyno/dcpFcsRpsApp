@@ -1,6 +1,6 @@
 const React = require('react');
 
-class RPSApp extends React.Component {
+class PlayForm extends React.Component {
     constructor(usecase) {
         super(usecase);
         this.rps = usecase.rps;
@@ -8,10 +8,6 @@ class RPSApp extends React.Component {
             p1Throw: '',
             p2Throw: ''
         }
-    }
-
-    playButtonClicked() {
-        this.rps.playRound(this.state.p1Throw, this.state.p2Throw, this)
     }
 
     player1Wins() {
@@ -38,10 +34,15 @@ class RPSApp extends React.Component {
         })
     }
 
+
     updateThrow(event) {
         this.setState({
-            [event.target.id] : event.target.value
+            [event.target.id]: event.target.value
         })
+    }
+
+    playButtonClicked() {
+        this.rps.playRound(this.state.p1Throw, this.state.p2Throw, this)
     }
 
     render() {
@@ -49,8 +50,26 @@ class RPSApp extends React.Component {
             <input id='p1Throw' onChange={this.updateThrow.bind(this)}/>
             <input id='p2Throw' onChange={this.updateThrow.bind(this)}/>
             <button id='playButton' onClick={this.playButtonClicked.bind(this)}>{this.state.result}</button>
+        </div>
+    }
+}
 
-            <div>no rounds have been played</div>
+class History extends React.Component {
+    render() {
+        return <div>no rounds have been played</div>
+    }
+}
+
+class RPSApp extends React.Component {
+    constructor(usecase) {
+        super(usecase);
+        this.rps = usecase.rps;
+    }
+
+    render() {
+        return <div>
+            <PlayForm rps={this.rps}/>
+            <History />
         </div>
     }
 }
