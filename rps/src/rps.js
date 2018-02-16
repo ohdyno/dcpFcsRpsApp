@@ -1,24 +1,24 @@
 class RPS {
-    playRound(p1, p2, ui) {
-        if (this.invalidThrow(p1) || this.invalidThrow(p2)) {
+    playRound(p1Throw, p2Throw, ui) {
+        if (this.invalidThrow(p1Throw) || this.invalidThrow(p2Throw)) {
             ui.invalid();
             return
         }
-        if (p1 === p2) {
+        if (p1Throw === p2Throw) {
             ui.tie();
             return
         }
-        if (p1 === 'rock' && p2 === 'scissors' ||
-            p1 === 'scissors' && p2 === 'paper' ||
-            p1 === 'paper' && p2 === 'rock') {
+        if (p1Throw === 'rock' && p2Throw === 'scissors' ||
+            p1Throw === 'scissors' && p2Throw === 'paper' ||
+            p1Throw === 'paper' && p2Throw === 'rock') {
             ui.player1Wins();
             return
         }
         ui.player2Wins()
     }
 
-    invalidThrow(p1) {
-        return p1 !== 'rock' && p1 !== 'scissors' && p1 !== 'paper';
+    invalidThrow(playerThrow) {
+        return playerThrow !== 'rock' && playerThrow !== 'scissors' && playerThrow !== 'paper';
     }
 }
 
