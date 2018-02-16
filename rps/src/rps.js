@@ -38,7 +38,7 @@ class RPS {
         if (this.repo.isEmpty()) {
             ui.noRounds();
         } else {
-            ui.roundsPlayed(this.rounds)
+            ui.roundsPlayed(this.repo.getAllRounds())
         }
     }
 

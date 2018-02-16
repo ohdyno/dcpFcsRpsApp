@@ -3,10 +3,9 @@ const FakeRepo = require('./fakeRepo');
 
 describe("history", function () {
     let rps;
-    let repo = new FakeRepo();
 
     beforeEach(function() {
-      rps = new RPS(repo);
+      rps = new RPS(new FakeRepo());
     });
 
     describe("for when no rounds have been played", function () {
