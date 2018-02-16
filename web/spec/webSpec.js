@@ -1,7 +1,7 @@
 const ReactDOM = require('react-dom');
 const React = require('react');
 const RPSApp = require('../src/web');
-const ReactTestUtils = require('react-dom/test-utils')
+const ReactTestUtils = require('react-dom/test-utils');
 
 describe("play form", function () {
     beforeEach(setUpDom);
@@ -22,10 +22,10 @@ describe("play form", function () {
 
     });
 
-    describe("when RPS.play tells the UI that the input is invalid", function () {
+    describe("when RPS tells the UI that the input is invalid", function () {
         beforeEach(function () {
             rpsStub = {
-                play: function (p1, p2, ui) {
+                playRound: function (p1, p2, ui) {
                     ui.invalid()
                 }
             };
@@ -38,10 +38,10 @@ describe("play form", function () {
         });
     });
 
-    describe("when RPS.play tells the UI that player 1 wins", function () {
+    describe("when RPS tells the UI that player 1 wins", function () {
         beforeEach(function () {
             rpsStub = {
-                play: function (p1, p2, ui) {
+                playRound: function (p1, p2, ui) {
                     ui.player1Wins()
                 }
             };
@@ -55,10 +55,10 @@ describe("play form", function () {
 
     });
 
-    describe("when RPS.play tells the UI that player 2 wins", function () {
+    describe("when RPS tells the UI that player 2 wins", function () {
         beforeEach(function () {
             rpsStub = {
-                play: function (p1, p2, ui) {
+                playRound: function (p1, p2, ui) {
                     ui.player2Wins()
                 }
             };
@@ -72,10 +72,10 @@ describe("play form", function () {
 
     });
 
-    describe("when RPS.play tells the UI that players tied", function () {
+    describe("when RPS tells the UI that players tied", function () {
         beforeEach(function () {
             rpsStub = {
-                play: function (p1, p2, ui) {
+                playRound: function (p1, p2, ui) {
                     ui.tie()
                 }
             };
@@ -96,14 +96,14 @@ describe("play form", function () {
 
         beforeEach(function () {
             rpsSpy = {
-                play: jasmine.createSpy('rpsSpy')
+                playRound: jasmine.createSpy('rpsSpy')
             };
             renderApp(rpsSpy);
         });
 
         it("passes the user inputs to RPS", function () {
             play(p1Throw, p2Throw);
-            expect(rpsSpy.play).toHaveBeenCalledWith(p1Throw, p2Throw, jasmine.anything())
+            expect(rpsSpy.playRound).toHaveBeenCalledWith(p1Throw, p2Throw, jasmine.anything())
         });
     });
 

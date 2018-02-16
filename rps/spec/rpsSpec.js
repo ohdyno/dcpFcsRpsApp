@@ -10,17 +10,17 @@ describe("RPS", function () {
                 };
 
                 it("tells the ui for rock vs. scissors", function () {
-                    rps.play("rock", "scissors", uiSpy);
+                    rps.playRound("rock", "scissors", uiSpy);
                     expect(uiSpy.player1Wins).toHaveBeenCalled()
                 });
 
                 it("tells the ui for scissors vs. paper", function () {
-                    rps.play("scissors", "paper", uiSpy);
+                    rps.playRound("scissors", "paper", uiSpy);
                     expect(uiSpy.player1Wins).toHaveBeenCalled()
                 });
 
                 it("tells the ui for paper vs. rock", function () {
-                    rps.play("paper", "rock", uiSpy);
+                    rps.playRound("paper", "rock", uiSpy);
                     expect(uiSpy.player1Wins).toHaveBeenCalled()
                 });
             });
@@ -31,17 +31,17 @@ describe("RPS", function () {
                 };
 
                 it("tells the ui for scissors vs. rock", function () {
-                    rps.play("scissors", "rock", uiSpy);
+                    rps.playRound("scissors", "rock", uiSpy);
                     expect(uiSpy.player2Wins).toHaveBeenCalled()
                 });
 
                 it("tells the ui for rock vs. paper", function () {
-                    rps.play("rock", "paper", uiSpy);
+                    rps.playRound("rock", "paper", uiSpy);
                     expect(uiSpy.player2Wins).toHaveBeenCalled()
                 });
 
                 it("tells the ui for paper vs. scissors", function () {
-                    rps.play("paper", "scissors", uiSpy);
+                    rps.playRound("paper", "scissors", uiSpy);
                     expect(uiSpy.player2Wins).toHaveBeenCalled()
                 });
             });
@@ -52,7 +52,7 @@ describe("RPS", function () {
                 };
 
                 it("tells the ui for the same throws", function () {
-                    rps.play("rock", "rock", uiSpy);
+                    rps.playRound("rock", "rock", uiSpy);
                     expect(uiSpy.tie).toHaveBeenCalled()
                 });
             });
@@ -63,12 +63,12 @@ describe("RPS", function () {
             };
 
             it('tells the ui for player 1 invalid throw', function () {
-                rps.play('sailboat', 'rock', uiSpy);
+                rps.playRound('sailboat', 'rock', uiSpy);
                 expect(uiSpy.invalid).toHaveBeenCalled()
             });
 
             it('tells the ui for player 2 invalid throw', function () {
-                rps.play('rock', 'sailboat', uiSpy);
+                rps.playRound('rock', 'sailboat', uiSpy);
                 expect(uiSpy.invalid).toHaveBeenCalled()
             });
         });

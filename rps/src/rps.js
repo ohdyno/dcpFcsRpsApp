@@ -1,5 +1,5 @@
 class RPS {
-    play(p1, p2, ui) {
+    playRound(p1, p2, ui) {
         if (this.invalidInput(p1) || this.invalidInput(p2)) {
             ui.invalid();
             return

@@ -11,7 +11,7 @@ class RPSApp extends React.Component {
     }
 
     playButtonClicked() {
-        this.rps.play(this.state.p1Throw, this.state.p2Throw, this)
+        this.rps.playRound(this.state.p1Throw, this.state.p2Throw, this)
     }
 
     player1Wins() {
