@@ -1,6 +1,6 @@
 class RPS {
     playRound(p1, p2, ui) {
-        if (this.invalidInput(p1) || this.invalidInput(p2)) {
+        if (this.invalidThrow(p1) || this.invalidThrow(p2)) {
             ui.invalid();
             return
         }
@@ -17,7 +17,7 @@ class RPS {
         ui.player2Wins()
     }
 
-    invalidInput(p1) {
+    invalidThrow(p1) {
         return p1 !== 'rock' && p1 !== 'scissors' && p1 !== 'paper';
     }
 }
