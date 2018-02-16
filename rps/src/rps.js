@@ -14,15 +14,13 @@ class RPS {
 
     playRound(p1Throw, p2Throw, ui) {
         let result;
-        if (this.invalidThrow(p1Throw) || this.invalidThrow(p2Throw)) {
+        if (this.invalidThrows(p1Throw, p2Throw)) {
             ui.invalid();
             result = 'invalid';
-        } else if (p1Throw === p2Throw) {
+        } else if (this.tie(p1Throw, p2Throw)) {
             ui.tie();
             result = 'tie';
-        } else if (p1Throw === 'rock' && p2Throw === 'scissors' ||
-            p1Throw === 'scissors' && p2Throw === 'paper' ||
-            p1Throw === 'paper' && p2Throw === 'rock') {
+        } else if (this.p1Wins(p1Throw, p2Throw)) {
             ui.player1Wins();
             result = 'player 1 wins';
         } else {
@@ -30,8 +28,25 @@ class RPS {
             result = 'player 2 wins'
         }
 
-        const round = new Round(p1Throw, p2Throw, result);
-        this.repo.save(round);
+        this.repo.save(new Round(p1Throw, p2Throw, result));
+    }
+
+    p1Wins(p1Throw, p2Throw) {
+        return p1Throw === 'rock' && p2Throw === 'scissors' ||
+            p1Throw === 'scissors' && p2Throw === 'paper' ||
+            p1Throw === 'paper' && p2Throw === 'rock';
+    }
+
+    tie(p1Throw, p2Throw) {
+        return p1Throw === p2Throw;
+    }
+
+    invalidThrows(p1Throw, p2Throw) {
+        return this.invalidThrow(p1Throw) || this.invalidThrow(p2Throw);
+    }
+
+    invalidThrow(playerThrow) {
+        return playerThrow !== 'rock' && playerThrow !== 'scissors' && playerThrow !== 'paper';
     }
 
     getHistory(ui) {
@@ -40,10 +55,6 @@ class RPS {
         } else {
             ui.roundsPlayed(this.repo.getAllRounds())
         }
-    }
-
-    invalidThrow(playerThrow) {
-        return playerThrow !== 'rock' && playerThrow !== 'scissors' && playerThrow !== 'paper';
     }
 }
 
