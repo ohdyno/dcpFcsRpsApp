@@ -9,7 +9,7 @@ describe("play form", function () {
     let rpsStub;
 
     describe("when no rounds have been played", function () {
-        beforeEach(function() {
+        beforeEach(function () {
             renderApp()
         });
 
@@ -90,13 +90,20 @@ describe("play form", function () {
     });
 
     describe("when the user clicks the play button", function () {
-        it("passes the user inputs to RPS", function () {
-            const rpsSpy = {
+        let rpsSpy;
+        const p1Throw = 'foo';
+        const p2Throw = 'bar';
+
+        beforeEach(function () {
+            rpsSpy = {
                 play: jasmine.createSpy('rpsSpy')
             };
             renderApp(rpsSpy);
-            play('foo', 'bar');
-            expect(rpsSpy.play).toHaveBeenCalledWith('foo', 'bar', jasmine.anything())
+        });
+
+        it("passes the user inputs to RPS", function () {
+            play(p1Throw, p2Throw);
+            expect(rpsSpy.play).toHaveBeenCalledWith(p1Throw, p2Throw, jasmine.anything())
         });
     });
 
