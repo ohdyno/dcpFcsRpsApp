@@ -1,4 +1,4 @@
-const RPS = require('../src/rps');
+const { RPS } = require('../src/rps');
 
 describe("RPS", function () {
     const rps = new RPS();
