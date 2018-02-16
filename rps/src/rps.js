@@ -17,6 +17,10 @@ class RPS {
         ui.player2Wins()
     }
 
+    getHistory(ui) {
+        ui.noRounds()
+    }
+
     invalidThrow(playerThrow) {
         return playerThrow !== 'rock' && playerThrow !== 'scissors' && playerThrow !== 'paper';
     }
