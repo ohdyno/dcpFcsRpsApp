@@ -72,7 +72,9 @@ class History extends React.Component {
 
     roundsPlayed(rounds) {
         this.setState({
-            displayRounds: rounds.map(round => <li>`${round.p1Throw} ${round.p2Throw} ${round.result}</li>)
+            displayRounds: rounds.map((round, index) =>
+                <li key={index}>`${round.p1Throw} ${round.p2Throw} ${round.result}</li>
+            )
         })
     }
 
