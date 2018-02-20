@@ -7,14 +7,20 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "watchify": "latest",
-    "babelify": "latest",
-    "babel-core": "latest",
-    "babel-preset-env": "latest",
-    "babel-preset-react": "latest",
-    "jasmine": "latest"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "jasmine": "^3.0.0",
+    "jasmine-core": "^2.99.1",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^2.0.9",
+    "webpack": "^3.11.0"
   },
   "scripts": {
-    "compile-test": "watchify spec/webSpec.js -o bundled/compiledWebSpec.js -t [ babelify --presets [ env react ] ]"
+    "test": "karma start web.test.karma.conf.js"
   }
 }
